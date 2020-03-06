@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" width="100%">
+    <thead>
+    <td>Назва книги</td>
+    <td>ISBN</td>
+    <td>Автор</td>
+    </thead>
+<tr th:each="book: ${bookStorage}">
+<td th:text="${book.book_name}"/>
+<td th:text="${book.isbn}"/>
+<td th:text="${book.author}"/>
+</tr>
+</table>
+<br>
+<form action="/" method="get">
+    <button type="submit">Повернутися до меню додавання</button>
+</form>
+
+</body>
+</html>
