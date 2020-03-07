@@ -2,15 +2,15 @@ package com.example.demo;
 
 import java.util.ArrayList;
 
-public class BookStorage {
+class BookStorage {
 
-    public static ArrayList<BookModel> books=new ArrayList<>();
+    private static ArrayList<BookModel> books=new ArrayList<>();
 
-    public static void addBook(BookModel book)
+    static void addBook(BookModel book)
     {
         books.add(book);
     }
-    public static ArrayList<BookModel> bookList()
+    static ArrayList<BookModel> bookList()
     {
         return  books;
     }

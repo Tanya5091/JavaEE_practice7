@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BookModel {
+class BookModel {
 
     private String book_name;
     private String isbn;
