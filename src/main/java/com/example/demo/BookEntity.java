@@ -3,7 +3,6 @@ package com.example.demo;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.transaction.Transactional;
 
 import lombok.*;
 

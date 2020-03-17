@@ -43,7 +43,7 @@ public class IndexController {
 
 
     @RequestMapping(value = "/add-book", method = RequestMethod.POST)
-    public String formControllerPost(@ModelAttribute BookEntity formModel, Model model) {
+    public String formControllerPost(@ModelAttribute BookEntity formModel) {
         DemoApplication.bookService.createBook(formModel);
         return "redirect:/book-list";
     }
