@@ -6,45 +6,49 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class BookService {
 
-    private final EntityManager entityManager;
+    private final BookRepository rep;
     @Transactional
-    public int createBook(final BookEntity book) {
-        BookEntity savedApartment = entityManager.merge(book);
-        return savedApartment.getId();
+    public BookEntity createBook(final BookEntity book) {
+        return rep.saveAndFlush(book);
     }
 
     @Transactional
-    public List<BookEntity> findAllBooksWithoutFetch() {
-        return entityManager.createQuery("FROM BookEntity", BookEntity.class)
-                .getResultList();
+    public List<BookEntity> getAllBooks() {
+        return rep.findAll();
 
     }
 
     @Transactional
     public List<BookEntity> findByName(String name) {
-        return entityManager.createQuery("Select a FROM BookEntity a Where a.book_name = :nam").setParameter("nam", name).getResultList();
-
+        return rep.findAllByBooknameLike(name);
     }
     @Transactional
     public List<BookEntity> findByIsbn(String name) {
-        return entityManager.createQuery("Select a FROM BookEntity a Where a.isbn = :nam").setParameter("nam", name).getResultList();
-
+        return rep.findAllByIsbnLike(name);
     }
     @Transactional
     public List<BookEntity> findByAuthor(String name) {
-        return entityManager.createQuery("Select a FROM BookEntity a Where a.author = :nam").setParameter("nam", name).getResultList();
-
+        return rep.findAllByAuthorLike(name);
+    }
+    @Transactional
+    public List<BookEntity> findByNameOrIsbn(String name) {
+        return rep.findAllByIsbnOrName(name);
     }
 
 
+
     @Transactional
-    public BookEntity getBookById(int bookId) {
-        return entityManager.find(BookEntity.class, bookId);
+    public BookEntity getBookById(int id) {
+        Optional<BookEntity> optionalBook = rep.findById(id);
+
+        return optionalBook
+                .orElse(null);
     }
 
 }

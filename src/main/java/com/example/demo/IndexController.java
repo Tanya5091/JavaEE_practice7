@@ -14,7 +14,7 @@ public class IndexController {
 
     @RequestMapping(value = "/book-list", method = RequestMethod.GET)
     public String booksList(@ModelAttribute BookEntity formModel, Model model) {
-        model.addAttribute("bookStorage",  DemoApplication.bookService.findAllBooksWithoutFetch());
+        model.addAttribute("bookStorage",  DemoApplication.bookService.getAllBooks());
         // code to get books and enrich model with those books
         return "book-list";
 
@@ -27,8 +27,10 @@ public class IndexController {
         model.addAttribute("bookStorage", DemoApplication.bookService.findByName(value));
         else if (x==1)
             model.addAttribute("bookStorage", DemoApplication.bookService.findByIsbn(value));
-        else
+        else if (x==2)
             model.addAttribute("bookStorage", DemoApplication.bookService.findByAuthor(value));
+        else if (x==3)
+            model.addAttribute("bookStorage", DemoApplication.bookService.findByNameOrIsbn(value));
         // code to get books and enrich model with those books
         return "book-list";
     }

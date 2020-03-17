@@ -20,8 +20,8 @@ public class BookEntity
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "book_name")
-    private String book_name;
+    @Column(name = "bookname")
+    private String bookname;
 
     @Column(name = "isbn")
     private String isbn;

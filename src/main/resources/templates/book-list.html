@@ -12,7 +12,7 @@
     <td>Автор</td>
     </thead>
 <tr th:each="book: ${bookStorage}">
-<td th:text="${book.book_name}"/>
+<td th:text="${book.bookname}"/>
 <td th:text="${book.isbn}"/>
 <td th:text="${book.author}"/>
 </tr>
@@ -29,14 +29,19 @@
     Value:  &nbsp &nbsp<input name="value" >
     <br>
     <select name="type">
-    <option value='0'> Name</option>
-    <option value='1' > ISBN</option>
-    <option value='2'> Author</option>
+        <option value='0'> Name</option>
+        <option value='1' > ISBN</option>
+        <option value='2'> Author</option>
+        <option value='3'> Name&ISBN</option>
     </select>
+    <br>
     <button type="submit">Filter</button>
     <br>
 </form>
 <form action="/exact-book" method="post">
+    <br>
+    Open Book Page
+    <br>
     Book index:  &nbsp &nbsp<input type="number" name="bookId" >
     <br>
     <button type="submit">Go To Book Page</button>
